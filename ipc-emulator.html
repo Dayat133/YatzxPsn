@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kirim Pesan Elegan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #fafafa, #f1f1f1);
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    text-align: center;
+    background: white;
+    padding: 25px 10px;
+    border-bottom: 2px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  header h1 {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 0.5px;
+  }
+
+  header span {
+    color: #c5a100;
+  }
+
+  .container {
+    max-width: 420px;
+    margin: 20px auto;
+    background: white;
+    padding: 25px 20px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1.5px solid #ddd;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: #c5a100;
+    box-shadow: 0 0 5px rgba(197,161,0,0.3);
+  }
+
+  textarea { height: 80px; resize: none; }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    margin-top: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:nth-child(1) {
+    background: linear-gradient(90deg, #4caf50, #81c784);
+  }
+  button:nth-child(1):hover { background: linear-gradient(90deg, #43a047, #66bb6a); }
+
+  button:nth-child(2) {
+    background: linear-gradient(90deg, #1976d2, #64b5f6);
+  }
+  button:nth-child(2):hover { background: linear-gradient(90deg, #1565c0, #42a5f5); }
+
+  button:nth-child(3) {
+    background: linear-gradient(90deg, #c5a100, #ffeb3b);
+    color: #333;
+  }
+  button:nth-child(3):hover { background: linear-gradient(90deg, #b59400, #fdd835); }
+
+  canvas {
+    display: none;
+    margin-top: 20px;
+  }
+
+  footer {
+    text-align: center;
+    margin: 20px;
+    font-size: 13px;
+    color: #777;
+  }
+
+  footer span {
+    color: #c5a100;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>Yatzx</span> AI Message</h1>
+  <p style="font-size: 14px; color: #777;">Kirim pesan, buat foto keren, & stiker elegan</p>
+</header>
+
+<div class="container">
+  <input type="text" id="nama" placeholder="Nama kamu" required />
+  <input type="text" id="sekolah" placeholder="Nama Sekolah" required />
+
+  <select id="kelas">
+    <option value="">Pilih Kelas</option>
+    <option>1A</option><option>1B</option>
+    <option>2A</option><option>2B</option>
+    <option>3A</option><option>3B</option>
+    <option>4A</option><option>4B</option>
+    <option>5A</option><option>5B</option>
+    <option>6A</option><option>6B</option>
+  </select>
+
+  <textarea id="pesan" placeholder="Tulis pesanmu..."></textarea>
+
+  <button onclick="kirimWhatsApp()">💬 Kirim ke WhatsApp</button>
+  <button onclick="buatFoto()">🖼️ Buat Foto Keren</button>
+  <button onclick="buatStiker()">🎨 Buat Stiker Putih</button>
+
+  <canvas id="canvas" width="512" height="512"></canvas>
+</div>
+
+<footer>© 2025 <span>Yatzx AI</span> | Desain Elegan Indonesia</footer>
+
+<script>
+  // Fungsi kirim ke WhatsApp
+  function kirimWhatsApp() {
+    const nama = document.getElementById("nama").value.trim();
+    const sekolah = document.getElementById("sekolah").value.trim();
+    const kelas = document.getElementById("kelas").value;
+    const pesan = document.getElementById("pesan").value.trim();
+
+    if (!nama || !sekolah || !kelas || !pesan) {
+      alert("Isi semua data dulu!");
+      return;
+    }
+
+    const text = `Halo!Ghan/Chan...Ini Chat dari Ai 👋\nSaya ${nama}\nDari ${sekolah}\nKelas ${kelas}\n\nPesan: ${pesan}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+  }
+
+  // Buat foto elegan
+  function buatFoto() {
+    const nama = document.getElementById("nama").value.trim();
+    const sekolah = document.getElementById("sekolah").value.trim();
+    const kelas = document.getElementById("kelas").value;
+    const pesan = document.getElementById("pesan").value.trim();
+
+    if (!nama || !sekolah || !kelas || !pesan) {
+      alert("Isi semua data dulu!");
+      return;
+    }
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 512, 512);
+
+    // Background elegan putih emas
+    const grad = ctx.createLinearGradient(0, 0, 512, 512);
+    grad.addColorStop(0, "#ffffff");
+    grad.addColorStop(1, "#f5deb3");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 512, 512);
+
+    // Border halus
+    ctx.strokeStyle = "#c5a100";
+    ctx.lineWidth = 10;
+    ctx.strokeRect(15, 15, 482, 482);
+
+    ctx.fillStyle = "#333";
+    ctx.font = "bold 28px Poppins";
+    ctx.fillText("Yatzx Elegant Message", 70, 60);
+    ctx.font = "20px Poppins";
+    ctx.fillText(`Nama: ${nama}`, 40, 150);
+    ctx.fillText(`Sekolah: ${sekolah}`, 40, 200);
+    ctx.fillText(`Kelas: ${kelas}`, 40, 250);
+    ctx.fillText("Pesan:", 40, 310);
+
+    ctx.font = "22px Poppins";
+    wrapText(ctx, pesan, 40, 340, 440, 28);
+
+    const img = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = img;
+    a.download = "pesan-elegan.png";
+    a.click();
+  }
+
+  // Buat stiker putih elegan
+  async function buatStiker() {
+    const nama = document.getElementById("nama").value.trim();
+    const sekolah = document.getElementById("sekolah").value.trim();
+    const kelas = document.getElementById("kelas").value;
+    const pesan = document.getElementById("pesan").value.trim();
+
+    if (!nama || !sekolah || !kelas || !pesan) {
+      alert("Isi semua data dulu!");
+      return;
+    }
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 512, 512);
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 512, 512);
+    ctx.strokeStyle = "#c5a100";
+    ctx.lineWidth = 8;
+    ctx.strokeRect(10, 10, 492, 492);
+
+    ctx.fillStyle = "#333";
+    ctx.font = "bold 30px Poppins";
+    ctx.textAlign = "center";
+    ctx.fillText(`${nama}`, 256, 150);
+    ctx.font = "20px Poppins";
+    ctx.fillText(`${sekolah} - ${kelas}`, 256, 200);
+    ctx.font = "24px Poppins";
+    wrapText(ctx, pesan, 256, 270, 420, 30, true);
+
+    const blob = await new Promise((r) => canvas.toBlob(r, "image/png"));
+    const file = new File([blob], "stiker.png", { type: "image/png" });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        files: [file],
+        title: "Stiker WhatsApp Elegan",
+        text: "Buatanku dari Yatzx AI ✨",
+      });
+    } else {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "stiker.png";
+      a.click();
+      alert("Browser kamu belum support share langsung. File diunduh saja 😊");
+    }
+  }
+
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight, center = false) {
+    const words = text.split(" ");
+    let line = "";
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + " ";
+      const metrics = ctx.measureText(testLine);
+      const testWidth = metrics.width;
+      if (testWidth > maxWidth && n > 0) {
+        ctx.fillText(line, x, y);
+        line = words[n] + " ";
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line, x, y);
+  }
+</script>
+</body>
+</html>
